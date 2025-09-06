@@ -44,6 +44,6 @@ steps:
   inputs:
     azureSubscription: 'Azure subscription 1(f823c456-be00-4f70-b511-e414d8f34e46)'
     appType: 'webApp'
-    appName: 'cicdapp'
+    appName: 'latestcicdapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'

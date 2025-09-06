@@ -42,7 +42,7 @@ steps:
 # 6. Deploy to Azure Web App
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'Azure subscription 1(f823c456-be00-4f70-b511-e414d8f34e46)'
+    azureSubscription: 'p'
     appType: 'webApp'
     appName: 'latestcicdapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'

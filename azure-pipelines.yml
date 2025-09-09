@@ -1,0 +1,49 @@
+trigger:
+- master
+
+pool:
+  name: 'sandeep'   # self-hosted agent
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+# 1. Checkout code
+- checkout: self
+
+# 2. Restore dependencies
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
+# 3. Build the Web API project
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+# 4. Run unit tests
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*Tests/*.csproj'   # adjust if your test project has a different folder/name
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+# 5. Publish Web API project
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+# 6. Deploy to Azure Web App
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'papa'
+    appType: 'webApp'
+    appName: 'latestcicdapp'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'

@@ -65,3 +65,4 @@ C:\MyWebApiApp\src\MyWebApi\obj\Debug\net6.0\refint\MyWebApi.dll
 C:\MyWebApiApp\src\MyWebApi\obj\Debug\net6.0\MyWebApi.pdb
 C:\MyWebApiApp\src\MyWebApi\obj\Debug\net6.0\MyWebApi.genruntimeconfig.cache
 C:\MyWebApiApp\src\MyWebApi\obj\Debug\net6.0\ref\MyWebApi.dll
+C:\MyWebApiApp\src\MyWebApi\obj\Debug\net6.0\MyWebApi.sourcelink.json

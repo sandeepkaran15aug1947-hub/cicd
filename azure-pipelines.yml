@@ -42,8 +42,8 @@ steps:
 # 6. Deploy to Azure Web App
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'papa'
+    azureSubscription: 'tuesday'
     appType: 'webApp'
-    appName: 'latestcicdapp'
+    appName: 'EmpApp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'

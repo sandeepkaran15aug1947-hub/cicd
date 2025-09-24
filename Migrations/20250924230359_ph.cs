@@ -4,7 +4,7 @@
 
 namespace MyWebApi.Migrations
 {
-    public partial class ph1 : Migration
+    public partial class ph : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -15,28 +15,11 @@ builder.Services.AddSwaggerGen();
 // ✅ Register DbContext with SQL Server
 
 
-if (builder.Environment.IsProduction())
-{
-    var keyVaultURL = builder.Configuration.GetSection("KeyVault:KeyVaultURL");
-    var keyVaultClientId = builder.Configuration.GetSection("KeyVault:ClientId");
-    var keyVaultClientSecret = builder.Configuration.GetSection("KeyVault:ClientSecret");
-    var keyVaultDirectoryID = builder.Configuration.GetSection("KeyVault:DirectoryID");
-    var credential = new ClientSecretCredential(keyVaultDirectoryID.Value!.ToString(), keyVaultClientId.Value!.ToString(), keyVaultClientSecret.Value!.ToString());
-    builder.Configuration.AddAzureKeyVault(keyVaultURL.Value!.ToString(), keyVaultClientId.Value!.ToString(), keyVaultClientSecret.Value!.ToString(), new DefaultKeyVaultSecretManager());
-    var client = new SecretClient(new Uri(keyVaultURL.Value!.ToString()), credential);
-    builder.Services.AddDbContext<AppDbContext>(options =>
-    {
-        options.UseSqlServer(client.GetSecret("ProdConnection").Value.Value.ToString());
-    });
-}
-
-if (builder.Environment.IsDevelopment())
-{
     builder.Services.AddDbContext<AppDbContext>(options =>
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     });
-}
+
 
 
 var app = builder.Build();

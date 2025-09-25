@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  name: 'sandeep'   # self-hosted agent
+  name: 'Default'   # self-hosted agent
 
 variables:
   buildConfiguration: 'Release'
@@ -42,8 +42,8 @@ steps:
 # 6. Deploy to Azure Web App
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: 'tuesday'
+    azureSubscription: 'myss'
     appType: 'webApp'
-    appName: 'EmpApp'
+    appName: 'sandeepapp'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'

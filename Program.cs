@@ -14,8 +14,9 @@ builder.Services.AddSwaggerGen();
 
 // ✅ Register DbContext with SQL Server
 
+//test
 
-    builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
     });
